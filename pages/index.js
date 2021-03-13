@@ -6,7 +6,9 @@ import styled from "styled-components";
 import { Creators } from "../src/redux/reducers/home";
 
 const H2 = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${(props) => {
+    return "red";
+  }};
 `;
 
 function Home({ image, carouselRequest }) {
