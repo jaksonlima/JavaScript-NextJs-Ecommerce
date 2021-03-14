@@ -5,22 +5,13 @@ import styled from "styled-components";
 
 import { Creators } from "../src/redux/reducers/home";
 
-const H2 = styled.div`
-  color: ${(props) => {
-    return "red";
-  }};
-`;
-
 function Home({ image, carouselRequest }) {
-  carouselRequest({ dispatch: "saga home" });
   return (
     <>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <H2>aa</H2>
     </>
   );
 }
