@@ -6,17 +6,19 @@ export const theme = responsiveFontSizes(
   createMuiTheme({
     palette: {
       primary: {
-        main: "#556cd6",
+        main: "#fff",
       },
       secondary: {
-        main: "#19857b",
+        main: "#000000",
       },
       error: {
         main: red.A400,
       },
       background: {
-        default: "#fff",
+        default: "#e5e6f029",
       },
     },
   })
 );
+
+console.log(theme);

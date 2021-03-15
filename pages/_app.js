@@ -27,7 +27,7 @@ function App({ Component, pageProps }) {
   return (
     <Fragment>
       <Head>
-        <title>My page</title>
+        <title>e-commerce</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProviderStyled theme={theme}>

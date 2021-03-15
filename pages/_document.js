@@ -6,10 +6,10 @@ import { ServerStyleSheets } from "@material-ui/core/styles";
 import { ServerStyleSheet } from "styled-components";
 
 import { theme } from "../src/styles/theme";
-export default class Document_ extends Document {
+export default class _Document extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="pt-br">
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
@@ -23,7 +23,7 @@ export default class Document_ extends Document {
   }
 }
 
-Document_.getInitialProps = async (ctx) => {
+_Document.getInitialProps = async (ctx) => {
   const materialSheets = new ServerStyleSheets();
   const styledSheets = new ServerStyleSheet();
 

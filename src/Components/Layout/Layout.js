@@ -6,9 +6,10 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Box component="main" flex="1" maxWidth="1280px">
-        {children}
-      </Box>
+      {/* <Box component="main" flex="1" maxWidth="1280px"> */}
+      {children}
+      {/* </Box> */}
+      <Box>footer</Box>
     </>
   );
 };
