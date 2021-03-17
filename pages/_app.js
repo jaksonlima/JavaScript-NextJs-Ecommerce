@@ -17,7 +17,6 @@ import Layout from "../src/Components/Layout";
 
 function App({ Component, pageProps }) {
   useEffect(() => {
-    // Remova o CSS injetado no lado do servidor.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -32,7 +31,6 @@ function App({ Component, pageProps }) {
       </Head>
       <ThemeProviderStyled theme={theme}>
         <ThemeProviderMaterial theme={theme}>
-          {/* O CssBaseline deu início a uma linha de base elegante, consistente e simples para construir. */}
           <GlobalStyleStyled />
           <CssBaselineMaterial />
           <Layout>

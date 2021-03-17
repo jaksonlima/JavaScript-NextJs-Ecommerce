@@ -11,7 +11,6 @@ export default class _Document extends Document {
     return (
       <Html lang="pt-br">
         <Head>
-          {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
         </Head>
         <body>
@@ -29,19 +28,23 @@ _Document.getInitialProps = async (ctx) => {
 
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => styledSheets.collectStyles(materialSheets.collect(<App {...props} />)),
-    });
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) => styledSheets.collectStyles(materialSheets.collect(<App {...props} />)),
+      });
 
-  const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx);
 
-  return {
-    ...initialProps,
-    styles: [
-      ...Children.toArray(initialProps.styles),
-      materialSheets.getStyleElement(),
-      styledSheets.getStyleElement(),
-    ],
-  };
+    return {
+      ...initialProps,
+      styles: [
+        ...Children.toArray(initialProps.styles),
+        materialSheets.getStyleElement(),
+        styledSheets.getStyleElement(),
+      ],
+    };
+  } finally {
+    styledSheets.seal();
+  }
 };

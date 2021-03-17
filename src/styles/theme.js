@@ -9,16 +9,28 @@ export const theme = responsiveFontSizes(
         main: "#fff",
       },
       secondary: {
-        main: "#000000",
+        main: "#000",
       },
       error: {
         main: red.A400,
       },
       background: {
-        default: "#e5e6f029",
+        default: "#fff",
       },
+    },
+    typography: {
+      fontFamily: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(","),
     },
   })
 );
-
-console.log(theme);
