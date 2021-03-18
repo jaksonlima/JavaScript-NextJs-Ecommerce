@@ -22,7 +22,7 @@ function Header() {
   }, []);
 
   return (
-    <AppBar position="sticky">
+    <AppBar etsteee position="sticky">
       <Toolbar variant="dense">
         <Grid container justify="space-between" alignItems="center">
           <Grid item>
