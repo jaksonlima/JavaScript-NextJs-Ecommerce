@@ -18,6 +18,13 @@ export const theme = responsiveFontSizes(
         default: "#fff",
       },
     },
+    overrides: {
+      MuiToolbar: {
+        dense: {
+          minHeight: "88px",
+        },
+      },
+    },
     typography: {
       fontFamily: [
         "-apple-system",
