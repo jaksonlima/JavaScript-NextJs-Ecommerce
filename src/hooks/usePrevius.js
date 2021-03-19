@@ -4,7 +4,7 @@ export const usePrevius = (data) => {
   const previusData = useRef();
 
   useEffect(() => {
-    previusData = data;
+    previusData.current = data;
   }, []);
 
   return previusData.current;
