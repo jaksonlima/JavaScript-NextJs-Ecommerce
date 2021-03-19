@@ -13,7 +13,7 @@ import { GlobalStyleStyled } from "../src/styles/globalStyle";
 
 import { wrapper } from "../src/redux/store";
 
-import Layout from "../src/Components/Layout";
+import Layout from "../src/components/Layout";
 
 function App({ Component, pageProps }) {
   useEffect(() => {
