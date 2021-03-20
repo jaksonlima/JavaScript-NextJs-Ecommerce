@@ -8,7 +8,7 @@ import { ThemeProvider as ThemeProviderStyled } from "styled-components";
 
 import { elementType, object } from "prop-types";
 
-import { theme } from "../src/styles/theme";
+import { createTheme } from "../src/styles/theme";
 import { GlobalStyleStyled } from "../src/styles/globalStyle";
 
 import { wrapper } from "../src/redux/store";
@@ -16,6 +16,10 @@ import { wrapper } from "../src/redux/store";
 import Layout from "../src/components/Layout";
 
 function App({ Component, pageProps }) {
+  const theme = createTheme();
+
+  console.log(theme);
+
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {

@@ -1,4 +1,8 @@
 export const THEMES = {
-  LIGHT: "LIGHT",
-  DARK: "LIGHT",
+  DARK: "dark",
+  LIGHT: "light",
+};
+
+export const COOKIE = {
+  THEME: "paletteType",
 };
