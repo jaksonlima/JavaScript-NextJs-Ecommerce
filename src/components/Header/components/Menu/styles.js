@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
-import { IconButton } from "@material-ui/core";
+import { IconButton, Menu } from "@material-ui/core";
+
 import { PersonOutline } from "@material-ui/icons";
+
+export const MenuMUI = styled(Menu)`
+  margin-top: 8px;
+
+  .MuiMenu-paper {
+    border: 1px solid #d3d4d5;
+  }
+`;
 
 export const PersonOutlineIcon = styled(PersonOutline)`
   font-size: 30px !important;

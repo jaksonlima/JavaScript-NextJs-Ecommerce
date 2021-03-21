@@ -2,24 +2,14 @@ import { Fragment, useEffect } from "react";
 
 import Head from "next/head";
 
-import CssBaselineMaterial from "@material-ui/core/CssBaseline";
-import { ThemeProvider as ThemeProviderMaterial } from "@material-ui/core/styles";
-import { ThemeProvider as ThemeProviderStyled } from "styled-components";
-
 import { elementType, object } from "prop-types";
-
-import { createTheme } from "../src/styles/theme";
-import { GlobalStyleStyled } from "../src/styles/globalStyle";
 
 import { wrapper } from "../src/redux/store";
 
 import Layout from "../src/components/Layout";
+import ThemeProvider from "../src/components/Theme";
 
 function App({ Component, pageProps }) {
-  const theme = createTheme();
-
-  console.log(theme);
-
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
@@ -33,15 +23,11 @@ function App({ Component, pageProps }) {
         <title>e-commerce</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProviderStyled theme={theme}>
-        <ThemeProviderMaterial theme={theme}>
-          <GlobalStyleStyled />
-          <CssBaselineMaterial />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProviderMaterial>
-      </ThemeProviderStyled>
+      <ThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </Fragment>
   );
 }

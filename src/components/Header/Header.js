@@ -5,8 +5,7 @@ import Image from "next/image";
 import { AppBar, Box, Grid, Hidden, Toolbar } from "@material-ui/core";
 
 import TextFieldMUI from "./components/TextField";
-
-import { PersonOutlineIcon, IconButtonMUI } from "./styles";
+import Menu from "./components/Menu";
 
 function Header() {
   useEffect(() => {
@@ -34,9 +33,7 @@ function Header() {
             <TextFieldMUI />
           </Hidden>
           <Grid item>
-            <IconButtonMUI aria-label="user">
-              <PersonOutlineIcon />
-            </IconButtonMUI>
+            <Menu />
           </Grid>
           <Hidden mdUp>
             <TextFieldMUI />

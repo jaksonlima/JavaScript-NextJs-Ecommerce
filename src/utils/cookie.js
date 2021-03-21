@@ -1,6 +1,6 @@
 import { Cookie } from "next-cookie";
 
-import { COOKIE } from "./constants";
+import { COOKIE, THEMES } from "./constants";
 
 export const get = (params) => {
   return new Cookie(params?.ctx).get(params.name) || null;
@@ -14,7 +14,7 @@ export const remove = (params) => {
   new Cookie(params?.ctx).remove(params.name);
 };
 
-export const themeCurrentLocal = (type) => {
+export const themeCurrentCookie = (type = THEMES.LIGHT) => {
   const themeCurrent = get({ name: COOKIE.THEME });
 
   if (themeCurrent && themeCurrent === type) {

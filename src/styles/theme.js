@@ -1,6 +1,5 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
-import { themeCurrentLocal } from "../utils/cookie";
 import { THEMES } from "../utils/constants";
 
 const colors = {
@@ -22,23 +21,21 @@ const colors = {
   },
 };
 
-export const createTheme = (type = THEMES.DARK) => {
-  const currentTypeTheme = themeCurrentLocal(type);
-
-  return responsiveFontSizes(
+export const createTheme = (type = THEMES.LIGHT) =>
+  responsiveFontSizes(
     createMuiTheme({
       palette: {
         type,
         primary: {
-          main: colors.primary[currentTypeTheme],
-          contrastText: colors.text[currentTypeTheme],
+          main: colors.primary[type],
+          contrastText: colors.text[type],
         },
         secondary: {
-          main: colors.secondary[currentTypeTheme],
-          contrastText: colors.text[currentTypeTheme],
+          main: colors.secondary[type],
+          contrastText: colors.text[type],
         },
         neutral: {
-          main: colors.neutral[currentTypeTheme],
+          main: colors.neutral[type],
         },
       },
       overrides: {
@@ -64,4 +61,3 @@ export const createTheme = (type = THEMES.DARK) => {
       },
     })
   );
-};
