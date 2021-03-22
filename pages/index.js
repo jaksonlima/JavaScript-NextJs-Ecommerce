@@ -1,47 +1,28 @@
 import Head from "next/head";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { END } from "@redux-saga/core";
 
-import { Creators } from "../src/redux/reducers/home";
+import { wrapper } from "../src/redux/store";
+import { Creators } from "../src/redux/reducers/product";
 
-function Home({ image, carouselRequest, users }) {
+import Home from "../src/view/Home";
+
+function Index() {
   return (
     <>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ul>
-        {users &&
-          users.map((item, index) => (
-            <li key={index}>
-              <div>
-                <div>#{item.id}</div>
-                <div>Nome: {item.name}</div>
-                <div>Username: {item.username}</div>
-              </div>
-            </li>
-          ))}
-      </ul>
+
+      <Home />
     </>
   );
 }
 
-Home.getInitialProps = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await response.json();
-
-  return {
-    users,
-  };
-};
-
-const mapStateToProps = ({ home }) => ({
-  image: home.getIn(["imagesCarousel"], []),
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  store.dispatch(Creators.productRequest());
+  store.dispatch(END);
+  await store.sagaTask.toPromise();
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ carouselRequest: Creators.carouselRequest }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Index;

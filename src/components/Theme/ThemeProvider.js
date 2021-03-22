@@ -16,12 +16,12 @@ import { get, set } from "../../utils/cookie";
 import { COOKIE } from "../../utils/constants";
 
 function ThemeProvider({ children, theme, themeSuccess }) {
-  const [currentTheme, setCurrentTheme] = useState(createTheme(theme));
+  const [currentTheme, setCurrentTheme] = useState(createTheme());
 
   useEffect(() => {
     const themeCookie = get({ name: COOKIE.THEME });
 
-    if (theme !== themeCookie) {
+    if (themeCookie && theme !== themeCookie) {
       themeSuccess({ theme: themeCookie });
     }
   }, []);

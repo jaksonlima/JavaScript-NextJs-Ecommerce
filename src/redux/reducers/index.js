@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
-import home from "./home";
 import global from "./global";
+import product from "./product";
 
 const reducers = combineReducers({
   global,
-  home,
+  product,
 });
 
 export default reducers;
