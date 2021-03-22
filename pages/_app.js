@@ -8,7 +8,6 @@ import { wrapper } from "../src/redux/store";
 
 import Layout from "../src/components/Layout";
 import ThemeProvider from "../src/components/Theme";
-
 function App({ Component, pageProps }) {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");

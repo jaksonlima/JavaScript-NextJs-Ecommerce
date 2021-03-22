@@ -5,7 +5,7 @@ import { THEMES } from "../utils/constants";
 const colors = {
   primary: {
     light: "#fafafa",
-    dark: "#303030",
+    dark: "#1A202C",
   },
   secondary: {
     light: "#1f5fb2",
@@ -14,6 +14,14 @@ const colors = {
   neutral: {
     light: "#f2f2f7",
     dark: "#3a3a3a",
+  },
+  background: {
+    light: "#fafafa",
+    dark: "#1A202C",
+  },
+  paper: {
+    light: "#fafafa",
+    dark: "#2D3748",
   },
   text: {
     light: "#ffffff",
@@ -36,6 +44,10 @@ export const createTheme = (type = THEMES.LIGHT) =>
         },
         neutral: {
           main: colors.neutral[type],
+        },
+        background: {
+          default: colors.background[type],
+          paper: colors.paper[type],
         },
       },
       overrides: {

@@ -1,13 +1,12 @@
 import { Box } from "@material-ui/core";
 
-import { ContainerMUI } from "./styles";
-
 import Header from "../Header";
+import ContainerMUI from "../Container";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <ContainerMUI maxWidth="xl">
+      <ContainerMUI>
         <Header />
         <Box component="main">{children}</Box>
         <Box component="footer">footer</Box>

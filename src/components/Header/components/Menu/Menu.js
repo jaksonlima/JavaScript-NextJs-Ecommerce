@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import { Box, MenuItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { MenuItem, ListItemIcon, ListItemText, Divider, IconButton } from "@material-ui/core";
 
-import { WbSunny, Brightness2Outlined } from "@material-ui/icons";
+import {
+  WbSunny,
+  Brightness2Outlined,
+  ExitToApp,
+  AssignmentIndOutlined,
+  LocalMallOutlined,
+  PersonOutline,
+} from "@material-ui/icons";
 
 import { THEMES } from "../../../../utils/constants";
 
-import { MenuMUI, IconButtonMUI, PersonOutlineIcon } from "./styles";
+import { MenuMUI, PersonOutlineIcon } from "./styles";
 
-function Menu({ typeTheme }) {
+import { Creators as GlobalCreators } from "../../../../redux/reducers/global";
+
+function Menu({ theme, themeSuccess }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -20,12 +30,19 @@ function Menu({ typeTheme }) {
     setAnchorEl(null);
   };
 
+  const handleTheme = () => {
+    const currentTheme = THEMES.LIGHT === theme ? THEMES.DARK : THEMES.LIGHT;
+
+    themeSuccess({ theme: currentTheme });
+  };
+
   return (
     <>
-      <IconButtonMUI aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick}>
+      <IconButton aria-controls="customized-menu" aria-haspopup="true" onClick={handleClick}>
         <PersonOutlineIcon />
-      </IconButtonMUI>
+      </IconButton>
       <MenuMUI
+        disableScrollLock
         keepMounted
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -33,7 +50,7 @@ function Menu({ typeTheme }) {
         id="customized-menu"
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center",
+          horizontal: "right",
         }}
         transformOrigin={{
           vertical: "top",
@@ -41,19 +58,42 @@ function Menu({ typeTheme }) {
         }}
         onClose={handleClose}
       >
-        <Box width={298}>
-          <MenuItem>
-            <ListItemIcon>
-              {THEMES.LIGHT === typeTheme ? <WbSunny fontSize="small" /> : <Brightness2Outlined fontSize="small" />}
-            </ListItemIcon>
-            <ListItemText primary={`Aparência: ${typeTheme}`} />
-          </MenuItem>
-        </Box>
+        <MenuItem>
+          <ListItemIcon>
+            <AssignmentIndOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Pedidos" />
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <LocalMallOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Carrinho" />
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <PersonOutline />
+          </ListItemIcon>
+          <ListItemText primary="Perfil" />
+        </MenuItem>
+        <MenuItem onClick={handleTheme}>
+          <ListItemIcon>{THEMES.LIGHT === theme ? <WbSunny /> : <Brightness2Outlined />}</ListItemIcon>
+          <ListItemText primary={`Aparência: ${theme}`} />
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Sair" />
+        </MenuItem>
       </MenuMUI>
     </>
   );
 }
 
-const mapStateToProps = ({ global }) => ({ typeTheme: global.getIn(["theme", "type"]) });
+const mapStateToProps = ({ global }) => ({ theme: global.getIn(["theme"]) });
 
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ themeSuccess: GlobalCreators.themeSuccess }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -6,3 +6,5 @@ export const THEMES = {
 export const COOKIE = {
   THEME: "paletteType",
 };
+
+export const MAX_WIDTH = "1280px";

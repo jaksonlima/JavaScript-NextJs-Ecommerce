@@ -1,19 +1,41 @@
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import CssBaselineMaterial from "@material-ui/core/CssBaseline";
 import { ThemeProvider as ThemeProviderMaterial } from "@material-ui/core/styles";
 import { ThemeProvider as ThemeProviderStyled } from "styled-components";
 
-import { themeCurrentCookie } from "../../utils/cookie";
-import { createTheme } from "../../styles/theme";
+import { Creators as GlobalCreators } from "../../redux/reducers/global";
+
 import { GlobalStyleStyled } from "../../styles/globalStyle";
 
-function ThemeProvider({ children, typeTheme }) {
-  const theme = createTheme(themeCurrentCookie(typeTheme));
+import { createTheme } from "../../styles/theme";
+import { get, set } from "../../utils/cookie";
+
+import { COOKIE } from "../../utils/constants";
+
+function ThemeProvider({ children, theme, themeSuccess }) {
+  const [currentTheme, setCurrentTheme] = useState(createTheme(theme));
+
+  useEffect(() => {
+    const themeCookie = get({ name: COOKIE.THEME });
+
+    if (theme !== themeCookie) {
+      themeSuccess({ theme: themeCookie });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme) {
+      set({ name: COOKIE.THEME, value: theme });
+      setCurrentTheme(createTheme(theme));
+    }
+  }, [theme]);
 
   return (
-    <ThemeProviderStyled theme={theme}>
-      <ThemeProviderMaterial theme={theme}>
+    <ThemeProviderStyled theme={currentTheme}>
+      <ThemeProviderMaterial theme={currentTheme}>
         <GlobalStyleStyled />
         <CssBaselineMaterial />
         {children}
@@ -22,6 +44,8 @@ function ThemeProvider({ children, typeTheme }) {
   );
 }
 
-const mapStateToProps = ({ global }) => ({ typeTheme: global.getIn(["theme", "type"]) });
+const mapStateToProps = ({ global }) => ({ theme: global.getIn(["theme"]) });
 
-export default connect(mapStateToProps)(ThemeProvider);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ themeSuccess: GlobalCreators.themeSuccess }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThemeProvider);

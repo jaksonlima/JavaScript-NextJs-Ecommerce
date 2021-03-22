@@ -4,9 +4,7 @@ import Immutable from "seamless-immutable";
 import { THEMES } from "../../utils/constants";
 
 const INITIAL_STATE = Immutable({
-  theme: {
-    type: THEMES.DARK,
-  },
+  theme: THEMES.LIGHT,
 });
 
 export const { Types, Creators } = createActions({
@@ -15,9 +13,9 @@ export const { Types, Creators } = createActions({
   themeError: ["data"],
 });
 
-const request = (state = INITIAL_STATE, data) => state.merge(data);
-const success = (state = INITIAL_STATE, data) => state.merge(data);
-const error = (state = INITIAL_STATE, data) => state.merge(data);
+const request = (state = INITIAL_STATE, { data }) => state.merge(data);
+const success = (state = INITIAL_STATE, { data }) => state.merge(data);
+const error = (state = INITIAL_STATE, { data }) => state.merge(data);
 
 export default createReducer(INITIAL_STATE, {
   [Types.THEME_REQUEST]: request,

@@ -16,9 +16,9 @@ function Home({ image, carouselRequest, users }) {
           users.map((item, index) => (
             <li key={index}>
               <div>
-                <h2>#{item.id}</h2>
-                <h3>Nome: {item.name}</h3>
-                <h3>Username: {item.username}</h3>
+                <div>#{item.id}</div>
+                <div>Nome: {item.name}</div>
+                <div>Username: {item.username}</div>
               </div>
             </li>
           ))}
