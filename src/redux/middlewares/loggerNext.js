@@ -1,3 +1,30 @@
+const typeDispatchs = [
+  {
+    type: "REQUEST",
+    emoji: "🌍",
+    color: "\x1b[32m%s\x1b[0m",
+    destiny: "---->",
+  },
+  {
+    type: "SUCCESS",
+    emoji: "🔵",
+    color: "\x1b[36m%s\x1b[0m",
+    destiny: "<----",
+  },
+  {
+    type: "ERROR",
+    emoji: "🔴",
+    color: "\x1b[31m%s\x1b[0m",
+    destiny: "<----",
+  },
+  {
+    type: "NONE",
+    emoji: "⚪",
+    color: "\x1b[37m%s\x1b[0m",
+    destiny: "<--->",
+  },
+];
+
 export const loggerNext = () => (currentNext) => (currentAction) => {
   const resultNext = currentNext(currentAction);
 
@@ -8,25 +35,25 @@ export const loggerNext = () => (currentNext) => (currentAction) => {
       second: "2-digit",
     });
 
-    const isRequest = currentAction.type.includes("REQUEST");
-
-    const destiny = isRequest ? "--->" : "<---";
-
-    const emoji = isRequest ? "🔵" : "🔴";
-
-    console.log(
-      `%s\x1b[0m %s \x1b[33m%s\x1b[0m %s \x1b[34m%s\x1b[0m  ${
-        isRequest ? "\x1b[32m%s\x1b[0m" : "\x1b[31m%s\x1b[0m"
-      }  \x1b[36m%s\x1b[0m %s`,
-      `${emoji}`,
-      "[",
-      `${dateTimeFormat.format(Date.now())}`,
-      ":",
-      "DISPATCH ACTION",
-      `${destiny}`,
-      `${currentAction.type}`,
-      "]\n"
+    const dispatch = typeDispatchs.find(
+      (typeDispatch) => currentAction.type.includes(typeDispatch.type) || typeDispatch.type.includes("NONE")
     );
+
+    if (dispatch) {
+      console.log(
+        `%s\x1b[0m %s \x1b[33m%s\x1b[0m %s \x1b[34m%s\x1b[0m  ${dispatch.color}  \x1b[36m%s\x1b[0m %s`,
+        `${dispatch.emoji}`,
+        "[",
+        `${dateTimeFormat.format(Date.now())}`,
+        ":",
+        "SERVER DISPATCH ACTION",
+        `${dispatch.destiny}`,
+        `${currentAction.type}`,
+        "]\n"
+      );
+    } else {
+      console.log(`${dateTimeFormat.format(Date.now())} SERVER DISPATCH ACTION <---> ${currentAction.type}`);
+    }
   }
 
   return resultNext;

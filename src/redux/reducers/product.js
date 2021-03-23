@@ -2,7 +2,9 @@ import { createReducer, createActions } from "reduxsauce";
 import Immutable from "seamless-immutable";
 
 const INITIAL_STATE = Immutable({
+  products: [],
   product: {},
+  error: {},
 });
 
 export const { Types, Creators } = createActions({
