@@ -12,12 +12,10 @@ import rootSaga from "../sagas";
 const isNotProduction = process.env.NODE_ENV !== "production";
 
 const bindMiddleware = (middleware) => {
-  const middlewares = [middleware, loggerNext];
-
   if (isNotProduction) {
     const { composeWithDevTools } = require("redux-devtools-extension");
 
-    return composeWithDevTools(applyMiddleware(...middlewares));
+    return composeWithDevTools(applyMiddleware(...[middleware, loggerNext]));
   }
   return applyMiddleware(...middleware);
 };

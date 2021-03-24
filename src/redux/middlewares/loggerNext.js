@@ -25,7 +25,7 @@ const typeDispatchs = [
   },
 ];
 
-export const loggerNext = () => (currentNext) => (currentAction) => {
+export const loggerNext = (currentStore) => (currentNext) => (currentAction) => {
   const resultNext = currentNext(currentAction);
 
   if (process.env.NODE_ENV !== "production" && !currentAction.type.includes("@@") && !global.window) {

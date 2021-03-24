@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { AppBar, Box, Grid, Hidden, Toolbar } from "@material-ui/core";
 
+import ContainerMUI from "../Container";
+
 import TextFieldMUI from "./components/TextField";
 import Menu from "./components/Menu";
 
@@ -23,22 +25,24 @@ function Header() {
   return (
     <AppBar position="sticky">
       <Toolbar variant="dense">
-        <Grid container justify="space-between" alignItems="center">
-          <Grid item>
-            <Box mt={1}>
-              <Image src="/logo1.png" alt="logo" width={50} height={50} />
-            </Box>
+        <ContainerMUI>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item>
+              <Box mt={1}>
+                <Image src="/logo1.png" alt="logo" width={50} height={50} />
+              </Box>
+            </Grid>
+            <Hidden smDown>
+              <TextFieldMUI />
+            </Hidden>
+            <Grid item>
+              <Menu />
+            </Grid>
+            <Hidden mdUp>
+              <TextFieldMUI />
+            </Hidden>
           </Grid>
-          <Hidden smDown>
-            <TextFieldMUI />
-          </Hidden>
-          <Grid item>
-            <Menu />
-          </Grid>
-          <Hidden mdUp>
-            <TextFieldMUI />
-          </Hidden>
-        </Grid>
+        </ContainerMUI>
       </Toolbar>
     </AppBar>
   );
