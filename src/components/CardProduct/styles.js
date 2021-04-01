@@ -8,5 +8,14 @@ export const CardMUI = styled(Card)`
 
   padding: 20px;
 
-  margin: 10px 1px 1px 1px;
+  transition: all 0.2s ease-out !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+
+    box-shadow: rgba(0 0 0 / 40%) 0px 3px 6px !important;
+  }
 `;

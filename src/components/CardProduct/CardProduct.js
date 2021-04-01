@@ -1,14 +1,16 @@
 import Image from "next/image";
 
-import { CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Grid } from "@material-ui/core";
+import { CardContent, CardMedia, Typography, Grid, Box } from "@material-ui/core";
 
 import { CardMUI } from "./styles";
 
+import { moeda } from "../../utils/formater";
+
 export default function MediaCard({ product }) {
-  console.log(product);
+  // console.log(product);
   return (
-    <CardMUI className=" CardMUI ">
-      <CardActionArea className=" CardActionArea ">
+    <Box m={1}>
+      <CardMUI>
         <Grid container direction="row" justify="center" alignItems="center">
           <CardMedia children={<Image src={product.image} width={145} height={145} />} />
           <CardContent>
@@ -16,14 +18,11 @@ export default function MediaCard({ product }) {
               {product.name}
             </Typography>
             <Typography variant="h6" component="span">
-              {product.price}
+              {moeda(product.price)}
             </Typography>
           </CardContent>
         </Grid>
-      </CardActionArea>
-      {/* <CardActions className=" CardActions ">
-        <Button size="small">Comprar</Button>
-      </CardActions> */}
-    </CardMUI>
+      </CardMUI>
+    </Box>
   );
 }
