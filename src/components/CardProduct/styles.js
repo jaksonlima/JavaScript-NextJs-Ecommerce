@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import { Card } from "@material-ui/core";
+import { Card, CardActions } from "@material-ui/core";
 import { FavoriteBorder } from "@material-ui/icons";
 
 export const CardMUI = styled(Card)`
-  width: 252px;
+  width: 250px;
   height: 399px;
 
   padding: 20px;
@@ -33,4 +33,8 @@ export const FavoriteBorderIconMUI = styled(FavoriteBorder)`
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
+`;
+
+export const CardActionsMUI = styled(CardActions)`
+  justify-content: flex-end;
 `;

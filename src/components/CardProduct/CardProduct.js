@@ -1,9 +1,8 @@
 import Image from "next/image";
 
-import { CardContent, CardMedia, Typography, Grid, Box, CardActions } from "@material-ui/core";
-import { FavoriteBorder as FavoriteIcon } from "@material-ui/icons";
+import { CardContent, CardMedia, Typography, Grid, Box } from "@material-ui/core";
 
-import { CardMUI, FavoriteBorderIconMUI } from "./styles";
+import { CardMUI, CardActionsMUI, FavoriteBorderIconMUI } from "./styles";
 
 import { moeda } from "../../utils/formater";
 
@@ -12,13 +11,9 @@ export default function MediaCard({ product }) {
   return (
     <Box m={1}>
       <CardMUI>
-        <Grid container justifyContent="flex-start">
-          <Grid item>
-            <CardActions>
-              <FavoriteBorderIconMUI />
-            </CardActions>
-          </Grid>
-        </Grid>
+        <CardActionsMUI>
+          <FavoriteBorderIconMUI fontSize="small" />
+        </CardActionsMUI>
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item>
             <CardMedia children={<Image src={product.image} width={145} height={145} />} />
