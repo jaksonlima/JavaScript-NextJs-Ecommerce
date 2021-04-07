@@ -6,8 +6,7 @@ import { CardMUI, CardActionsMUI, FavoriteBorderIconMUI } from "./styles";
 
 import { moeda } from "../../utils/formater";
 
-export default function MediaCard({ product }) {
-  // console.log(product);
+export default function ProductCard({ product }) {
   return (
     <Box m={1}>
       <CardMUI>
