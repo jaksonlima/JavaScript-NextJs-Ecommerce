@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import CardProduct from "../../components/CardProduct";
+import ProductCard from "../../components/ProductCard";
 
 function Home({ products }) {
   return (
@@ -9,7 +9,7 @@ function Home({ products }) {
       {products &&
         products.map((product) => (
           <div key={product.id}>
-            <CardProduct product={product} />
+            <ProductCard product={product} />
           </div>
         ))}
     </Grid>

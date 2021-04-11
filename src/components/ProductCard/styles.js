@@ -1,24 +1,28 @@
 import styled from "styled-components";
 
-import { Card, CardActions } from "@material-ui/core";
+import { Button, Card, CardActions } from "@material-ui/core";
 import { FavoriteBorder } from "@material-ui/icons";
 
-export const CardMUI = styled(Card)`
-  width: 250px;
-  height: 399px;
-
-  padding: 20px;
+export const ButtonMUI = styled(Button)`
+  padding: unset !important;
 
   transition: all 0.2s ease-out !important;
 
   &:hover,
   &:focus,
   &:active {
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
+    -webkit-transform: translateY(-8px) !important;
+    transform: translateY(-8px) !important;
 
     box-shadow: rgba(0 0 0 / 40%) 0px 3px 6px !important;
   }
+`;
+
+export const CardMUI = styled(Card)`
+  width: 250px;
+  height: 399px;
+
+  padding: 20px;
 `;
 
 export const FavoriteBorderIconMUI = styled(FavoriteBorder)`
