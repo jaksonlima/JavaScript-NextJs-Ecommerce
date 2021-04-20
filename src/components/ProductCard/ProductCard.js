@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { CardContent, CardMedia, Typography, Grid, Box, Button } from "@material-ui/core";
+import { CardContent, CardMedia, Typography, Grid, Box } from "@material-ui/core";
 
 import { CardMUI, CardActionsMUI, FavoriteBorderIconMUI, ButtonMUI } from "./styles";
 
