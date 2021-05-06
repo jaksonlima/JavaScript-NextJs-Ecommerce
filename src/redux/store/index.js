@@ -15,7 +15,7 @@ const bindMiddleware = (middleware) => {
   if (isNotProduction) {
     const { composeWithDevTools } = require("redux-devtools-extension");
 
-    return composeWithDevTools(applyMiddleware(...[middleware, loggerNext]));
+    return composeWithDevTools(applyMiddleware(...middleware, loggerNext));
   }
   return applyMiddleware(...middleware);
 };
@@ -30,7 +30,7 @@ function hydrate(state, action) {
 
 export const makeStore = (context) => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(hydrate, bindMiddleware(sagaMiddleware));
+  const store = createStore(hydrate, bindMiddleware([sagaMiddleware]));
 
   store.sagaTask = sagaMiddleware.run(rootSaga);
 
